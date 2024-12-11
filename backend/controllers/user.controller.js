@@ -1,6 +1,6 @@
 import userModel from "../models/user.model.js";
 import expressValidator from "express-validator";
-import { createUser } from "../services/user.service.js";
+import { createUser, existUser } from "../services/user.service.js";
 import { blacklistModel } from "../models/blacklistToken.model.js";
 
 const { validationResult } = expressValidator;
@@ -11,8 +11,12 @@ const registerUser = async (req, res) => {
   }
 
   const { fullname, email, password } = req.body;
-  console.log(password);
-
+  const doesUserExist = await existUser({ email });
+  if (doesUserExist) {
+    return res
+      .status(400)
+      .json({ message: "User with this email already exist" });
+  }
   const hashPassword = await userModel.hashPassword(password);
   console.log(hashPassword);
   const user = await createUser({

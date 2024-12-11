@@ -16,4 +16,12 @@ const createUser = async ({ firstname, lastname, email, password }) => {
   return user;
 };
 
-export { createUser };
+const existUser = async ({ email }) => {
+  if (!email) {
+    throw new Error("Email is required");
+  }
+  const exist = await userModel.findOne({ email });
+  return !!exist;
+};
+
+export { createUser, existUser };
