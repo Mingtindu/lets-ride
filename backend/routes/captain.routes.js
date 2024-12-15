@@ -23,11 +23,11 @@ router.post(
       .isLength({ min: 3 })
       .withMessage("Color must be at least 3 characters long"),
     body("vehicle.plate")
-      .isInt({ min: 3 })
+      .isLength({ min: 3 })
       .withMessage("Plate must be at least 3 characters long"),
     body("vehicle.capacity")
       .isInt({ min: 1 })
-      .withMessage("Password must be at least 3 characters long"),
+      .withMessage("Capaciry must be at least 1 "),
     body("vehicle.type")
       .isIn(["car", "motorcycle", "auto"])
       .withMessage("Vehicle must be car motocycle and auto"),
