@@ -1,12 +1,12 @@
 import React from "react";
 
-const LookingForDriver = () => {
+const LookingForDriver = ({ setVehicleFound }) => {
   return (
     <div>
       <h5
         className="p-1 text-center w-[93%] absolute top-0"
         onClick={() => {
-          setVehiclePanel(false);
+          setVehicleFound(false);
         }}
       >
         <i className="text-3xl text-gray-200 ri-arrow-down-line"></i>
@@ -43,9 +43,6 @@ const LookingForDriver = () => {
           </div>
         </div>
       </div>
-      <button className="w-full mt-5 bg-green-600 text-white font-semibold p-2 rounded-xl">
-        Confirm
-      </button>
     </div>
   );
 };
